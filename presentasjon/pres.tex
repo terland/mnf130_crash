@@ -24,7 +24,7 @@
 \usetheme{Montpellier}
 
 
-\title[MNF130 Oppsummering]{MNF130 Oppsummeringsforelesning}
+\title[Hvordan overleve eksamen i MNF130]{Hvordan overleve eksamen i MNF130}
 
 \author{Håvard Utne Terland}
 \institute[UiB]
@@ -48,11 +48,13 @@
 	\begin{itemize}
 		\item Formell logikk
 		\item Mengder og funksjoner
-		\item Primtallsfinning, gcd, lcm
-		\item Induksjonsoppgaver fra eksamener
+		\item Induksjonsoppgaver
 		\item Litt telling (kombinatorikk)
 		\item Relasjoner
 	\end{itemize}
+
+	Hva jeg \textit{ikke} snakker om: Modulær aritmetikk og primtall, divisjonsalgoritmen, euklids algoritme, grafteori og gramatikker/backus-naur. Oppfordring:  Euklids algoritme og Eratosthenes' sil er veldig verdt å lære.
+	
 \end{frame}
 
 %\begin{frame}
@@ -170,45 +172,13 @@ Se på oppgave 2 fra V16
 		\item Surjektiv: Hvis $b \in B$ så finnes det en $a \in A$ hvor $f(a) = b$.
 		\item Bijektiv: Begge de to over
 	\end{enumerate}
+
+\textit{Se på oppgave 1 fra Eksamen V17.}
 \end{frame}
 
-
-\section{Litt tallteori}
-
-\subsection{Deling}
-
-\begin{frame}
-	\frametitle{Deling - tilbake til barneskolen!}
-	Hvordan regne ut $8/3$? Barneskole: $8/3 = 2$ med rest $2$. Ungdomskole: $8/3 = 2,666.. = 2,67$. Eksempel: $95/9 = 10\cdot9 + 5$. \linebreak
-	
-	Hvis resten er 0 "det går opp"; $x/d = qd + 0$, da sier vi at $d$ deler $x$, og vi skriver det $d|x$.
-\end{frame}
-
-\subsection{Primtall, gcd, lcm}
-
-\begin{frame}
-	\frametitle{Primtallfinning}
-\end{frame}
-
-\begin{frame}
-	\frametitle{gcd og lcm}
-	\begin{itemize}
-		\item $\frac{5}{8} + \frac{3}{12}$
-		\item $\text{lcm}(8,12) = 24$
-		\item gcd og lcm - største felles faktor og minste felles multiplum.
-
-	\end{itemize}
-\end{frame}
-
-\begin{frame}
-	\frametitle{Euklids algoritme}
-\end{frame}
 
 \section{Induksjon}
 
-\begin{frame}
-\[\text{Del 4}\]
-\end{frame}
 
 \begin{frame}
 \frametitle{Induksjon på naturlige tall}
@@ -217,47 +187,44 @@ Generelt prinsipp for å bevise påstander, ved å utnytte et konsept om større
 Noen eksempler av induksjon på naturlige tall:
 \begin{itemize}
 	\item $\forall n (n \geq 1 \rightarrow 1 + 3 + 5 + 7 +\dots + (2n-1) = n^2)$
-	\item La $f_0 = 0, f_1 = 1$ og $f_n = f_{n-1} + f_{n-2}$ når $n \geq 2$. Vis at $f_n \geq (3/2)^{n-1}$ når $n \geq 6$.
-\end{itemize}
-
-\end{frame}
-
-\begin{frame}
-\frametitle{Induksjon på helt andre ting (strukturell induksjon)}
-Bevis for at euklids algoritme fungerer for alle naturlige tall $>0$. Input er et par av tall, $(x,y)$. Vi kan ikke bare gjøre induksjon på x, eller y. 
-\[P = \{(a,b) \in \mathbb{N}| a > 0 \wedge b > 0\}\]
-
-Ide: Gjør induksjon på \textit{summen} av de to tallene!
-
-\begin{enumerate} 
-	\item Basis: Når summen er 2 (1,1) - da gir den rett svar.
-	\item Induksjonshypotese: Anta at algoritmen gir rett svar når summen er mindre enn eller lik $k \geq 2$.
-	\item Induksjons-steg: Når summen er lik $k+1$ har vi input $(a,b), a + b = k + 1$. Tre muligheter: \linebreak
 	
-	$a > b$ \\
-	$b > a$ \\
-	$a = b$
-\end{enumerate}
-\end{frame}
-
-\begin{frame}
-\frametitle{Telling i grafer}
-Induktiv definisjon av grafer:
-
-\begin{itemize}
-	\item Basis: Den tomme grafen $\emptyset$ er en graf.
-	\item Induksjonssteg 1: Vi kan legge inn en node i grafen.
-	\item Induksjonssteg 2: Vi kan, mellom to punkter som ikke allerede har en linje, trekke en linje.
+	\item \textit{V17 Oppgave 2} La $f_0 = 0, f_1 = 1$ og $f_n = f_{n-1} + f_{n-2}$ når $n \geq 2$. Vis at $f_n \geq (3/2)^{n-1}$ når $n \geq 6$.
 \end{itemize}
 
-Graden til en node/punkt er antall kanter som er tegnet mellom den og andre punkter/node.
-\linebreak
-Vis: \textit{Summen av alle nodene sine grader er et partall}'
-
 \end{frame}
 
 \begin{frame}
-\frametitle{Takk for meg!}
+	\frametitle{Litt telling}
+	\textit{V17 Oppgave 5}
+	\begin{itemize}
+		\item Hvor mange bitstrenger med 8 bit har 000 som de tre første bit?
+		\item Hvor mange bitstrenger med 8 bit har nøyaktig 4 bit som er 1?
+		\item La A og B være mengder, hvor $|A| = 4$ = $|B| = 10$. Hvor mange funksjoner $f:A \rightarrow B$ finnes det?
+		\item La A og B være mengder, hvor $|A| = 4$ = $|B| = 10$. Hvor mange injektive funksjoner $f:A \rightarrow B$ finnes det?
+		\item La A og B være mengder, hvor $|A| = 4$ = $|B| = 10$. Hvor mange surjektive funksjoner $f:A \rightarrow B$ finnes det?
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Relasjoner}
+	\textit{Vi ser på oppgave 7.1 fra eksamen V17}
+	
+	En \textbf{relasjon} $R$ over en mengde $A$ er rett og slett bare en delmengde av $A \times A$. Altså \[R \subseteq A \times A\]
+	
+	relasjonen kan være $\emptyset$, for eksempel. Den kan ha andre egenskaper:
+	
+	\begin{itemize}
+		\item Refleksiv
+		\item Symmetrisk
+		\item Transitiv
+		\item Hvis alle over: Ekvivalenserelasjon
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Lykke til!}
+	
+	Lykke til på eksamen - og husk - dette faget er ikke bare et hvilket som helst fag men en smakebit av det matematiske grunnlaget for alt som skjer inni en datamaskin.
 \end{frame}
 
 \end{document}
