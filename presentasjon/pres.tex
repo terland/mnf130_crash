@@ -1,0 +1,263 @@
+\documentclass{beamer}
+\usepackage{hyperref}
+\usepackage{amsfonts}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern} % load a font with all the characters
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{appendix}
+\usepackage{tikz}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{pifont}
+\usepackage{amsthm}
+\usepackage{hyperref}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage[autostyle]{csquotes}  
+\graphicspath{ {img/} }
+\usepackage{default}
+
+\usetheme{Montpellier}
+
+
+\title[MNF130 Oppsummering]{MNF130 Oppsummeringsforelesning}
+
+\author{Håvard Utne Terland}
+\institute[UiB]
+{
+	Universitetet i Bergen \\
+	\medskip
+\textit{Havard.Terland@student.uib.no}
+
+}
+\date{1. Juni, 2018}
+
+\begin{document}
+\begin{frame}
+	\titlepage
+\end{frame}
+
+
+\begin{frame}
+	\frametitle{Plan}
+	Se på oppgaver fra de to forrige eksamenene.
+	\begin{itemize}
+		\item Formell logikk
+		\item Mengder og funksjoner
+		\item Primtallsfinning, gcd, lcm
+		\item Induksjonsoppgaver fra eksamener
+		\item Litt telling (kombinatorikk)
+		\item Relasjoner
+	\end{itemize}
+\end{frame}
+
+%\begin{frame}
+%	\frametitle{Oversikt}
+%	\tableofcontents
+%\end{frame}
+
+\section{Logikk}
+
+\subsection{Utsagnslogikk (propositional logic)}
+
+\begin{frame}
+	\frametitle{Symbolsk logikk - 1}
+	\begin{itemize}
+		\item Proposisjoner: $P,Q,R,S,T,\dots$ representerer setninger som nødvendigvis er sann eller ikke sann (usann).
+		\item Vi har symboler $\vee,\wedge,\neg \text{ og } \rightarrow$ som vi kan bruke.
+		\item Sannhetstabeller: Vi kan manuelt sjekke om en setning er sann, gitt at vi vet om atomene er sann eller ikke.
+		 
+	\end{itemize}
+
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Symbolsk logikk - Noen viktige begrep}
+\begin{itemize}
+	\item $P \equiv Q$ - P \textbf{ekvivalent} med Q - betyr at P er sann nøyaktig når Q er sann og usann nøyaktig når Q er usann. Kan sjekkes i sannhetstabeller, eller med andre regler.
+	\item \textit{Ekstremt} viktig: $P \rightarrow Q \equiv \neg P \vee Q$
+	\item $\wedge,\vee$ er \textbf{kommutativ} og \textbf{assosiativ}. For eks får vi \[P \vee Q \equiv Q \vee P\] \[(P \wedge Q) \wedge R \equiv P \wedge (Q \wedge R)\].
+	\item Noe er en \textbf{tautologi} hvis det i alle rader i sannhetstabellen er T. \textbf{Kontradiksjon} hvis alle rader er F.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\begin{table}[]
+	\centering
+	\caption{$\rightarrow$ er IKKE assosiativ!}
+	\label{my-label}
+	\begin{tabular}{|l|l|l|l|}
+		\hline
+		$P$ & $P \rightarrow P$ & $(P \rightarrow P) \rightarrow P$ & $P \rightarrow (P \rightarrow P)$ \\ \hline
+		T& T&  T&T  \\ \hline
+		F& T&  F&T \\ \hline
+	\end{tabular}
+\end{table}
+
+\begin{table}[]
+	\centering
+	\caption{$\rightarrow$ er IKKE kommutativ!}
+	\label{my-label}
+	\begin{tabular}{|l|l|l|l|}
+		\hline
+		$P$ & $Q$ & $P \rightarrow Q$ & $Q \rightarrow P$ \\ \hline
+		T& T&  T&T  \\ \hline
+		T& F&  F&T \\ \hline
+		F& T&  T&F \\ \hline
+		F& F&  T&T \\ \hline
+	\end{tabular}
+\end{table}
+
+
+\end{frame}
+
+\begin{frame}
+Se på V16, 3b): Vis at $[(p \rightarrow q) \wedge p] \rightarrow q$ er en tautologi (benytt ekvivalente utrykk).
+\end{frame}
+
+
+\subsection{Kvantorer}
+
+\begin{frame}
+	\frametitle{Predikater}
+	En proposisjon er \textit{konstant}. Ett predikat er en variabel setning; sannhetsverdi avhenger av input $P$ er predikatet, $P(x)$ er enten sann eller usann, avhengig av $x$. \newline
+\end{frame}
+
+\begin{frame}
+\frametitle{Kvantorer: \ensuremath{\forall,\exists} osv.}
+\begin{itemize}
+	\item Vi jobber alltid i ett univers. For eksempel $\mathbb{N}$, eller kanskje noe så enkelt som $\{1,2,3\}$. 
+	\item $\forall x(2x \geq x)$ er sann i universene $\mathbb{N}$ og $\{2,4,6,8,\dots\}$, men ikke om universet er $\mathbb{Z}$
+	\item Rekkefølge på kvantorene er \textit{helt essensiell}. For eks, la universet være $\mathbb{R}$: se på disse to: \[\forall n \exists m (n + m = 0), \exists m \forall n (n + m = 0)\] 
+	\item 
+	La her universet være $\mathbb{Z}$. Under er noen opppgaver fra \textbf{Eksamen V16}
+	\item $\forall n \exists m (n^2 < m)$
+	\item $\forall n \exists m (n + m = 0)$
+	\item $\forall n \forall \exists k (2k = m + n)$
+	\item $\forall a > 0 \forall b > 0 (ab = gcd(a,b) * lcm(a,b))$
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Hva er mengder?}
+Ikke annet enn en samling av objekter. Grunnleggende mengder:
+
+\begin{itemize}
+	\item $\emptyset$ - den tomme mengden. $|\emptyset| = 0$.
+	\item $\{\emptyset\}$ - mengden som inneholder $\emptyset$ (altså $\emptyset \in \{\emptyset\})$.
+	\item $\mathbb{Z},\mathbb{Q},\mathbb{R},\mathbb{N}$ - heltall, rasjonelle tall, reelle tall, naturlige tall.
+	\item \textit{Den viktigste ideen}; bygg nye mengder fra gamle: $\{x | x \in \mathbb{Q} \wedge x > 1\}$
+	\item $A \cup B$ er mengden av ting som ligger i A og/eller i B. Altså, $x \in A \cup B \equiv x \in A \vee x \in B$.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+Se på oppgave 2 fra V16
+\end{frame}
+
+\subsection{Funksjoner}
+\begin{frame}
+	\frametitle{Funksjoner: Injeksjoner, surjeksjoner og bijeksjoner}
+	En funksjon $f:A \rightarrow B$ er en "maskin" som tar inn ting i $A$ og spytter ut ting i $B$.
+	
+	\begin{enumerate}
+		\item Injektiv: Hvis $(f(x) = f(y))$ så er $x = y$.
+		\item Surjektiv: Hvis $b \in B$ så finnes det en $a \in A$ hvor $f(a) = b$.
+		\item Bijektiv: Begge de to over
+	\end{enumerate}
+\end{frame}
+
+
+\section{Litt tallteori}
+
+\subsection{Deling}
+
+\begin{frame}
+	\frametitle{Deling - tilbake til barneskolen!}
+	Hvordan regne ut $8/3$? Barneskole: $8/3 = 2$ med rest $2$. Ungdomskole: $8/3 = 2,666.. = 2,67$. Eksempel: $95/9 = 10\cdot9 + 5$. \linebreak
+	
+	Hvis resten er 0 "det går opp"; $x/d = qd + 0$, da sier vi at $d$ deler $x$, og vi skriver det $d|x$.
+\end{frame}
+
+\subsection{Primtall, gcd, lcm}
+
+\begin{frame}
+	\frametitle{Primtallfinning}
+\end{frame}
+
+\begin{frame}
+	\frametitle{gcd og lcm}
+	\begin{itemize}
+		\item $\frac{5}{8} + \frac{3}{12}$
+		\item $\text{lcm}(8,12) = 24$
+		\item gcd og lcm - største felles faktor og minste felles multiplum.
+
+	\end{itemize}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Euklids algoritme}
+\end{frame}
+
+\section{Induksjon}
+
+\begin{frame}
+\[\text{Del 4}\]
+\end{frame}
+
+\begin{frame}
+\frametitle{Induksjon på naturlige tall}
+Generelt prinsipp for å bevise påstander, ved å utnytte et konsept om størrelse: Begynn med de minste elementene, og jobb oppover. \linebreak
+
+Noen eksempler av induksjon på naturlige tall:
+\begin{itemize}
+	\item $\forall n (n \geq 1 \rightarrow 1 + 3 + 5 + 7 +\dots + (2n-1) = n^2)$
+	\item La $f_0 = 0, f_1 = 1$ og $f_n = f_{n-1} + f_{n-2}$ når $n \geq 2$. Vis at $f_n \geq (3/2)^{n-1}$ når $n \geq 6$.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Induksjon på helt andre ting (strukturell induksjon)}
+Bevis for at euklids algoritme fungerer for alle naturlige tall $>0$. Input er et par av tall, $(x,y)$. Vi kan ikke bare gjøre induksjon på x, eller y. 
+\[P = \{(a,b) \in \mathbb{N}| a > 0 \wedge b > 0\}\]
+
+Ide: Gjør induksjon på \textit{summen} av de to tallene!
+
+\begin{enumerate} 
+	\item Basis: Når summen er 2 (1,1) - da gir den rett svar.
+	\item Induksjonshypotese: Anta at algoritmen gir rett svar når summen er mindre enn eller lik $k \geq 2$.
+	\item Induksjons-steg: Når summen er lik $k+1$ har vi input $(a,b), a + b = k + 1$. Tre muligheter: \linebreak
+	
+	$a > b$ \\
+	$b > a$ \\
+	$a = b$
+\end{enumerate}
+\end{frame}
+
+\begin{frame}
+\frametitle{Telling i grafer}
+Induktiv definisjon av grafer:
+
+\begin{itemize}
+	\item Basis: Den tomme grafen $\emptyset$ er en graf.
+	\item Induksjonssteg 1: Vi kan legge inn en node i grafen.
+	\item Induksjonssteg 2: Vi kan, mellom to punkter som ikke allerede har en linje, trekke en linje.
+\end{itemize}
+
+Graden til en node/punkt er antall kanter som er tegnet mellom den og andre punkter/node.
+\linebreak
+Vis: \textit{Summen av alle nodene sine grader er et partall}'
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Takk for meg!}
+\end{frame}
+
+\end{document}
